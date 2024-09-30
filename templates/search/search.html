@@ -104,10 +104,11 @@
     }
 
     function getCityPhoto(city, callback1) {
-        let xhr1 = new XMLHttpRequest();
+        let baseUrl = "{% url 'search:city_photo' %}";  // Django will render the full path
+        let url1 = new URL(window.location.origin + baseUrl);  // Combine origin with the path
+        url1.searchParams.set('q', city);  // Set query parameter for the city name
 
-        let url1 = new URL('{{ request.scheme }}://{{ request.get_host }}{% url 'search:city_photo' %}');
-        url1.searchParams.set('q', city);
+        let xhr1 = new XMLHttpRequest();
 
         xhr1.onload = function(e) {
             callback1(this.responseText);
@@ -117,6 +118,7 @@
         xhr1.send();
     }
 
+
     function getCityList(callback) {
         let xhr = new XMLHttpRequest();
         let city = document.getElementById("query").value;
@@ -125,7 +127,8 @@
             return;
         }
 
-        let url = new URL('{{ request.scheme }}://{{ request.get_host }}{% url 'search:city_search' %}');
+        // Use double quotes for the Django URL tag
+        let url = new URL('{{ request.scheme }}://{{ request.get_host }}{% url "search:city_search" %}');
         url.searchParams.set('q', city);
 
         xhr.onload = function(e) {
@@ -136,13 +139,17 @@
         xhr.send();
     }
 
+
     function redict_to_info(city, citiesJSON) {
         let citySuggestions = JSON.parse(citiesJSON).results;
 
         if (citySuggestions.length !== 0) {
-            location.href = "{% url "info_page" %}?city=" + citySuggestions[0].name + "&country=" + citySuggestions[0].address.countryCode;
+            let infoPageUrl = "{% url 'info_page' %}";
+            let fullUrl = infoPageUrl + "?city=" + encodeURIComponent(citySuggestions[0].name) + "&country=" + encodeURIComponent(citySuggestions[0].address.countryCode);
+            location.href = fullUrl;
         }
     }
+
 
     function clearSuggestions() {
         document.getElementById('suggestion-before').innerHTML = "";

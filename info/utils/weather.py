@@ -25,4 +25,5 @@ class WeatherBit(WeatherUtilBase):
             headers=self._url.with_default_headers(),
             params=params,
         )
+        print(">>>>>>>>>>>>>>>>>>>>>>>>> weather api response", response.json())
         return response.json()

@@ -147,8 +147,8 @@ AMADEUS_CONFIG = {
     "host": "test.api.amadeus.com",
     "port": 443,
     "headers": {
-        "API_KEY": os.environ.get("AMADEUS_API_KEY"),
-        "API_SECRET_KEY": os.environ.get("AMADEUS_API_SECRET_KEY"),
+        "API_KEY": os.environ.get("AMADEUS_API_KEY" , "DMMgG44spTH5AhTjhyenemolm70hLznC"),
+        "API_SECRET_KEY": os.environ.get("AMADEUS_API_SECRET_KEY", "h1q3axN3cJiOzIvV"),
     }
 }
 
@@ -157,7 +157,7 @@ UNSPLASH_CONFIG = {
     "host": "api.unsplash.com",
     "port": 443,
     "headers": {
-        'Authorization': f"Client-ID {os.environ.get('UNSPLASH_API_KEY')}",
+        'Authorization': f"Client-ID {os.environ.get('UNSPLASH_API_KEY', "yRSbIkGvb8bAZQv2-9TPP1UT9TJARoGvE_Q62lag2cs")}",
     }
 }
 
@@ -166,7 +166,7 @@ FOURSQUARE_CONFIG = {
     "host": "api.foursquare.com",
     "port": 443,
     "headers": {
-        'Authorization': os.environ.get("FOURSQUARE_API_KEY"),
+        'Authorization': os.environ.get("FOURSQUARE_API_KEY", "fsq3ifWI+qoL0CbI5MqZDZGLVyJehPj+4ozialwFLCGQkFs="),
     }
 }
 
@@ -175,8 +175,8 @@ WEATHER_BIT_CONFIG = {
     "host": "weatherbit-v1-mashape.p.rapidapi.com",
     "port": 443,
     "headers": {
-        'X-RapidAPI-Key': os.environ.get("WEATHER_BIT_X_RAPID_API_KEY"),
-        'X-RapidAPI-Host': os.environ.get("WEATHER_BIT_X_RAPID_API_HOST"),
+        'X-RapidAPI-Key': os.environ.get("WEATHER_BIT_X_RAPID_API_KEY", "f11350c9e5msh79329e987f6c025p156117jsn375017ace9c4"),
+        'X-RapidAPI-Host': os.environ.get("WEATHER_BIT_X_RAPID_API_HOST", "weatherbit-v1-mashape.p.rapidapi.com"),
     }
 }
 

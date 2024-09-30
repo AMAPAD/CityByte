@@ -31,4 +31,6 @@ class Unsplash(PhotoUtilBase):
             params=self._url.with_default_params({"page": page, "orientation": orientation, "query": query})
         )
 
+        print("--------------------------- unsplash response: ", response.json())
+
         return response.json().get("results", [])
